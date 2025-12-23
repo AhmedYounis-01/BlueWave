@@ -107,7 +107,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(6px);
   background: rgba(7, 19, 55, 0.75);
   transition: background 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -155,7 +155,7 @@ header.hidden {
   transition: 0.3s all ease-in-out;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
-  background-color: #0096c7;
+  /* background-color: #e70404; */
 }
 
 /* Desktop: Logo (right) | Menu (center) | Language (left) */
