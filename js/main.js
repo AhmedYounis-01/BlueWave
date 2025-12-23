@@ -224,8 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('.nav'); // Navigation bar
     const header = document.querySelector('header'); // Header element
     const html = document.documentElement; // <html> tag
-    const langSwitcher = document.getElementById('lang-switcher'); // Language switcher button
+    const langSwitcher = document.getElementById('lang-switcher'); // Language switcher button (desktop)
+    const langSwitcherMobile = document.getElementById('lang-switcher-mobile'); // Language switcher button (mobile)
     const langText = langSwitcher.querySelector('.language-text'); // Language switcher text
+    const langTextMobile = langSwitcherMobile ? langSwitcherMobile.querySelector('.language-text') : null; // Language switcher text (mobile)
     // Do not cache the NodeList at load time. Query inside updateContent to
     // ensure any dynamically added or modified elements with `data-key`
     // (like the contact cards) are included when switching languages.
@@ -247,8 +249,11 @@ document.addEventListener('DOMContentLoaded', () => {
         html.setAttribute('lang', lang);
         html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
-        // Update language switcher button text
+        // Update language switcher button text (both desktop and mobile)
         langText.textContent = lang === 'ar' ? 'English' : 'العربية';
+        if (langTextMobile) {
+            langTextMobile.textContent = lang === 'ar' ? 'English' : 'العربية';
+        }
 
         // Query all translatable elements at the time of update so newly
         // injected or modified elements are picked up (fixes contact cards not updating).
@@ -290,8 +295,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialLang = getStoredLanguage();
     updateContent(initialLang);
 
-    // Attach click event to language switcher
+    // Attach click event to language switcher (both desktop and mobile)
     langSwitcher.addEventListener('click', toggleLanguage);
+    if (langSwitcherMobile) {
+        langSwitcherMobile.addEventListener('click', toggleLanguage);
+    }
 
     // =========================
     // MOBILE NAV (HAMBURGER) TOGGLE
@@ -328,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Ensure menu closes when resizing up to desktop
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && nav.classList.contains('mobile-open')) {
+            if (window.innerWidth > 980 && nav.classList.contains('mobile-open')) {
                 nav.classList.remove('mobile-open');
                 setAria();
             }

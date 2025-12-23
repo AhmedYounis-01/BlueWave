@@ -1,509 +1,761 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-key="pageTitle">بلو ويف | متجر أدوات السباحة</title>
     <link rel="stylesheet" href="css/style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- ========================= -->
     <!-- HEADER SECTION -->
     <!-- ========================= -->
     <header>
-        <nav class="nav">
-            <div class="language-switcher" id="lang-switcher">
-                <span class="language-icon">🌐</span>
-                <span class="language-text">English</span>
+      <nav class="nav">
+        <!-- Mobile hamburger toggle - on the left (RTL) -->
+        <button
+          id="nav-toggle"
+          class="nav-toggle"
+          aria-label="فتح القائمة"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <!-- Main nav menu - in the center -->
+        <ul class="nav__menu">
+          <li><a href="#home" data-key="navHome">الرئيسية</a></li>
+          <li><a href="#about" data-key="navAbout">من نحن</a></li>
+          <li><a href="#products" data-key="navProducts">منتجاتنا</a></li>
+          <li><a href="#services" data-key="navServices">خدماتنا</a></li>
+          <li><a href="#contact" data-key="navContact">تواصل معنا</a></li>
+          <!-- Language switcher in mobile menu -->
+          <li class="nav__menu-lang-item">
+            <div
+              class="language-switcher language-switcher--mobile"
+              id="lang-switcher-mobile"
+            >
+              <span class="language-icon">🌐</span>
+              <span class="language-text">English</span>
             </div>
-            <!-- Mobile hamburger toggle -->
-            <button id="nav-toggle" class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
-            </button>
-            <ul class="nav__menu">
-                <li><a href="#home" data-key="navHome">الرئيسية</a></li>
-                <li><a href="#about" data-key="navAbout">من نحن</a></li>
-                <li><a href="#products" data-key="navProducts">منتجاتنا</a></li>
-                <li><a href="#services" data-key="navServices">خدماتنا</a></li>
-                <li><a href="#contact" data-key="navContact">تواصل معنا</a></li>
-            </ul>
-            <img src="images/logo.jpg" alt="Blue Wave badge" class="header-right-img" />
-        </nav>
-    </header>
-    
-    <div class="layout">
-        <!-- Background Slideshow -->
-        <div class="background-slideshow">
-            <div class="slide active"
-                style="background-image: url('https://images.unsplash.com/photo-1574744918163-6cef6f4a31b0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            </div>
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1596942378917-6921fee9c6c4?q=80&w=1330&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            </div>
-            <div class="slide" style="background-image: url('images/swimMan3.jpg');"> </div>
-            <div class="slide" style="background-image: url('images/swimMan.jpg');"> </div>
+          </li>
+        </ul>
+
+        <!-- Logo - on the right (RTL) -->
+        <div class="nav__logo">
+          <img
+            src="images/logo.jpg"
+            alt="Blue Wave badge"
+            class="header-right-img"
+          />
         </div>
 
-        <!-- ========================= -->
-        <!-- HERO SECTION --> 
-        <!-- ========================= -->
-        <section id="home" class="hero">
-            <span class="hero__badge" data-key="heroBadge">بلو ويف – معدات سباحة متقدمة</span>
-            <h1 class="hero__title" data-key="heroTitle">
-                امنح فريقك وثقتك دفعة للأمام مع أحدث مستلزمات السباحة الاحترافية
-            </h1>
-            <p class="hero__subtitle" data-key="heroSubtitle">
-                نحن متجر إلكتروني متخصص في تقديم أدوات السباحة عالية الجودة للأندية،
-                المدارس، والأبطال الطموحين. من تصميم الزي الموحد وحتى تجهيز المسابح
-                التدريبية بأحدث التقنيات – Blue Wave هو شريكك لتحقيق أداء يتفوق على
-                التيار.
-            </p>
-            <div class="hero__actions">
-                <a class="btn-primary" href="#products" data-key="btnProducts">اكتشف منتجاتنا</a>
-                <a class="btn-secondary" href="#services" data-key="btnServices">تعرف على خدماتنا</a>
-            </div>
-        </section>
+        <!-- Language switcher - desktop only, on the far left (RTL) -->
+        <div class="language-switcher" id="lang-switcher">
+          <span class="language-icon">🌐</span>
+          <span class="language-text">English</span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <!-- Background Slideshow -->
+      <div class="background-slideshow">
+        <div
+          class="slide active"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1574744918163-6cef6f4a31b0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+          "
+        ></div>
+        <div
+          class="slide"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1596942378917-6921fee9c6c4?q=80&w=1330&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+          "
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('images/swimMan3.jpg')"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url('images/swimMan.jpg')"
+        ></div>
+      </div>
+
+      <!-- ========================= -->
+      <!-- HERO SECTION -->
+      <!-- ========================= -->
+      <section id="home" class="hero">
+        <span class="hero__badge" data-key="heroBadge"
+          >بلو ويف – معدات سباحة متقدمة</span
+        >
+        <h1 class="hero__title" data-key="heroTitle">
+          امنح فريقك وثقتك دفعة للأمام مع أحدث مستلزمات السباحة الاحترافية
+        </h1>
+        <p class="hero__subtitle" data-key="heroSubtitle">
+          نحن متجر إلكتروني متخصص في تقديم أدوات السباحة عالية الجودة للأندية،
+          المدارس، والأبطال الطموحين. من تصميم الزي الموحد وحتى تجهيز المسابح
+          التدريبية بأحدث التقنيات – Blue Wave هو شريكك لتحقيق أداء يتفوق على
+          التيار.
+        </p>
+        <div class="hero__actions">
+          <a class="btn-primary" href="#products" data-key="btnProducts"
+            >اكتشف منتجاتنا</a
+          >
+          <a class="btn-secondary" href="#services" data-key="btnServices"
+            >تعرف على خدماتنا</a
+          >
+        </div>
+      </section>
     </div>
 
     <!-- ========================= -->
     <!-- MAIN CONTENT -->
     <!-- ========================= -->
     <main>
-        <!-- ========================= -->
-        <!-- ABOUT SECTION -->
-        <!-- ========================= -->
-        <section id="about">
-            <div class="section__inner">
-                <h2 class="section__title" data-key="aboutTitle">من Blue Wave؟</h2>
-                <p class="section__subtitle" data-key="aboutSubtitle">
-                    منذ تأسيسنا عام 2015 ونحن نزوّد السباحين، المدربين، والمؤسسات بأحدث
-                    الأدوات الرياضية التي تجمع بين التصميم العصري والاعتمادية العالية.
-                    رؤيتنا هي تمكين كل سبّاح من الثقة في كل سباق، وكل مدرب من بناء خطة
-                    تدريبية مبنية على بيانات واقعية.
-                </p>
-                <div class="features">
-                    <article class="feature-card">
-                        <h3 data-key="feature1Title">حلول متكاملة للأندية</h3>
-                        <p data-key="feature1Body">
-                            تجهيز المسابح، زي الفريق، نظم التوقيت، ومعدات التحكم في جودة
-                            المياه ضمن باقات مصممة لتلائم كل ميزانية.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="feature2Title">تجربة تسوق سلسة</h3>
-                        <p data-key="feature2Body">
-                            منصة إلكترونية بسيطة مع خيارات دفع آمنة وشحن سريع لجميع أنحاء
-                            الوطن العربي، بالإضافة إلى متابعة طلباتك لحظة بلحظة.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="feature3Title">دعم فني متخصص</h3>
-                        <p data-key="feature3Body">
-                            فريق استشاري من مدربي سباحة وخبراء تجهيزات رياضية يقدمون لك
-                            نصائح مخصصة لاختيار المنتجات الملائمة.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="feature4Title">ابتكار مستمر</h3>
-                        <p data-key="feature4Body">
-                            تعاون مع علامات عالمية وشركات تكنولوجيا رياضية لتوفير حساسات
-                            تتبع الأداء وبدلات تدريب ذكية.
-                        </p>
-                    </article>
-                </div>
-                <div class="stats">
-                    <div class="stats__item">
-                        <strong>120+</strong>
-                        <span data-key="stat1Unit">نادٍ معتمد يثق بخدماتنا</span>
-                    </div>
-                    <div class="stats__item">
-                        <strong>15K</strong>
-                        <span data-key="stat2Unit">منتج تم شحنه خلال العام الماضي</span>
-                    </div>
-                    <div class="stats__item">
-                        <strong>98%</strong>
-                        <span data-key="stat3Unit">رضا العملاء عن تجربة الشراء والدعم</span>
-                    </div>
-                    <div class="stats__item">
-                        <strong>8</strong>
-                        <span data-key="stat4Unit">دول نخدمها من خلال شركائنا اللوجستيين</span>
-                    </div>
-                </div>
+      <!-- ========================= -->
+      <!-- ABOUT SECTION -->
+      <!-- ========================= -->
+      <section id="about">
+        <div class="section__inner">
+          <h2 class="section__title" data-key="aboutTitle">من Blue Wave؟</h2>
+          <p class="section__subtitle" data-key="aboutSubtitle">
+            منذ تأسيسنا عام 2015 ونحن نزوّد السباحين، المدربين، والمؤسسات بأحدث
+            الأدوات الرياضية التي تجمع بين التصميم العصري والاعتمادية العالية.
+            رؤيتنا هي تمكين كل سبّاح من الثقة في كل سباق، وكل مدرب من بناء خطة
+            تدريبية مبنية على بيانات واقعية.
+          </p>
+          <div class="features">
+            <article class="feature-card">
+              <h3 data-key="feature1Title">حلول متكاملة للأندية</h3>
+              <p data-key="feature1Body">
+                تجهيز المسابح، زي الفريق، نظم التوقيت، ومعدات التحكم في جودة
+                المياه ضمن باقات مصممة لتلائم كل ميزانية.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="feature2Title">تجربة تسوق سلسة</h3>
+              <p data-key="feature2Body">
+                منصة إلكترونية بسيطة مع خيارات دفع آمنة وشحن سريع لجميع أنحاء
+                الوطن العربي، بالإضافة إلى متابعة طلباتك لحظة بلحظة.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="feature3Title">دعم فني متخصص</h3>
+              <p data-key="feature3Body">
+                فريق استشاري من مدربي سباحة وخبراء تجهيزات رياضية يقدمون لك
+                نصائح مخصصة لاختيار المنتجات الملائمة.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="feature4Title">ابتكار مستمر</h3>
+              <p data-key="feature4Body">
+                تعاون مع علامات عالمية وشركات تكنولوجيا رياضية لتوفير حساسات
+                تتبع الأداء وبدلات تدريب ذكية.
+              </p>
+            </article>
+          </div>
+          <div class="stats">
+            <div class="stats__item">
+              <strong>120+</strong>
+              <span data-key="stat1Unit">نادٍ معتمد يثق بخدماتنا</span>
             </div>
-        </section>
-        <!-- ========================= -->
-        <!-- APP SECTION -->
-        <!-- ========================= -->
-        <section id="app" class="app-section">
-            <div class="app-section__container">
-                <div class="app-section__content">
-                    <h2 class="app-section__title" data-key="appSectionTitle">تطبيق Blue Wave</h2>
-                    <p class="app-section__description" data-key="appSectionDescription">
-                        تطبيقنا هو متجرك الإلكتروني الشامل لجميع احتياجاتك من الأدوات الرياضية الخاصة بالسباحة.
-                        تسوق بسهولة من آلاف المنتجات عالية الجودة - بدلات السباحة، النظارات، الزعانف،
-                        معدات التدريب، وأكثر من ذلك. استمتع بتجربة تسوق سلسة مع دفع آمن، شحن سريع،
-                        ومتابعة فورية لطلباتك. تطبيق Blue Wave يجعل شراء مستلزمات السباحة أسهل وأسرع
-                        من أي وقت مضى. تصفح الكتالوج الكامل، قارن الأسعار، واحصل على عروض حصرية
-                        متاحة فقط للمستخدمين.
+            <div class="stats__item">
+              <strong>15K</strong>
+              <span data-key="stat2Unit">منتج تم شحنه خلال العام الماضي</span>
+            </div>
+            <div class="stats__item">
+              <strong>98%</strong>
+              <span data-key="stat3Unit"
+                >رضا العملاء عن تجربة الشراء والدعم</span
+              >
+            </div>
+            <div class="stats__item">
+              <strong>8</strong>
+              <span data-key="stat4Unit"
+                >دول نخدمها من خلال شركائنا اللوجستيين</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ========================= -->
+      <!-- APP SECTION -->
+      <!-- ========================= -->
+      <section id="app" class="app-section">
+        <div class="app-section__container">
+          <div class="app-section__content">
+            <h2 class="app-section__title" data-key="appSectionTitle">
+              تطبيق Blue Wave
+            </h2>
+            <p
+              class="app-section__description"
+              data-key="appSectionDescription"
+            >
+              تطبيقنا هو متجرك الإلكتروني الشامل لجميع احتياجاتك من الأدوات
+              الرياضية الخاصة بالسباحة. تسوق بسهولة من آلاف المنتجات عالية
+              الجودة - بدلات السباحة، النظارات، الزعانف، معدات التدريب، وأكثر من
+              ذلك. استمتع بتجربة تسوق سلسة مع دفع آمن، شحن سريع، ومتابعة فورية
+              لطلباتك. تطبيق Blue Wave يجعل شراء مستلزمات السباحة أسهل وأسرع من
+              أي وقت مضى. تصفح الكتالوج الكامل، قارن الأسعار، واحصل على عروض
+              حصرية متاحة فقط للمستخدمين.
+            </p>
+            <a
+              href="#products"
+              class="app-section__button"
+              data-key="appSectionButton"
+              >حمل التطبيق الآن</a
+            >
+          </div>
+          <div class="app-section__images">
+            <div class="app-section__image-main">
+              <img
+                src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0"
+                alt="أشخاص واقفين يرتدون ملابس سباحة"
+              />
+            </div>
+            <div class="app-section__image-secondary">
+              <img
+                src="images/mobile_swimming.jpg"
+                alt="موبايل يعرض تطبيق متجر ملابس سباحة"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ========================= -->
+      <!-- WHY CHOOSE US SECTION -->
+      <!-- ========================= -->
+      <section id="why-choose-us" class="why-choose-us">
+        <div class="why-choose-us__container">
+          <div class="why-choose-us__images">
+            <div class="why-choose-us__image-top">
+              <img src="images/swimGlass.jpg" alt="نظارات سباحة احترافية" />
+            </div>
+            <div class="why-choose-us__image-bottom">
+              <img src="images/menSwim2.jpg" alt="بدلات سباحة عالية الجودة" />
+            </div>
+          </div>
+          <div class="why-choose-us__content">
+            <h2 class="why-choose-us__title" data-key="whyChooseUsTitle">
+              لماذا تختارنا
+            </h2>
+            <p
+              class="why-choose-us__description"
+              data-key="whyChooseUsDescription"
+            >
+              نقدم لك جودة لا مثيل لها وقيمة عالية وثقة في كل ما يخص معدات
+              السباحة الاحترافية. نحن ملتزمون بتوفير أفضل المنتجات والخدمات
+              لمساعدتك في تحقيق أهدافك الرياضية.
+            </p>
+            <div class="why-choose-us__features">
+              <div class="why-choose-us__feature-box">
+                <h3
+                  class="why-choose-us__feature-title"
+                  data-key="whyChooseUsFeature1Title"
+                >
+                  شحن سريع
+                </h3>
+                <p
+                  class="why-choose-us__feature-desc"
+                  data-key="whyChooseUsFeature1Desc"
+                >
+                  للطلبات فوق 1000 ج.م
+                </p>
+              </div>
+              <div class="why-choose-us__feature-box">
+                <h3
+                  class="why-choose-us__feature-title"
+                  data-key="whyChooseUsFeature2Title"
+                >
+                  ضمان الجودة
+                </h3>
+                <p
+                  class="why-choose-us__feature-desc"
+                  data-key="whyChooseUsFeature2Desc"
+                >
+                  100% مضمون
+                </p>
+              </div>
+              <div class="why-choose-us__feature-box">
+                <h3
+                  class="why-choose-us__feature-title"
+                  data-key="whyChooseUsFeature3Title"
+                >
+                  دفع آمن
+                </h3>
+                <p
+                  class="why-choose-us__feature-desc"
+                  data-key="whyChooseUsFeature3Desc"
+                >
+                  معاملات محمية بالكامل
+                </p>
+              </div>
+              <div class="why-choose-us__feature-box">
+                <h3
+                  class="why-choose-us__feature-title"
+                  data-key="whyChooseUsFeature4Title"
+                >
+                  دعم 24/7
+                </h3>
+                <p
+                  class="why-choose-us__feature-desc"
+                  data-key="whyChooseUsFeature4Desc"
+                >
+                  جاهزون من أجلك
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ========================= -->
+      <!-- PRODUCTS SECTION -->
+      <!-- ========================= -->
+      <section id="products">
+        <div class="section__inner">
+          <h2 class="section__title" data-key="productsTitle">
+            منتجاتنا المميزة
+          </h2>
+          <p class="section__subtitle" data-key="productsSubtitle">
+            مجموعة مختارة بعناية تلبي احتياجات جميع مستويات السباحة من المبتدئين
+            وحتى المحترفين، مع ضمان جودة معتمد من اتحادات رياضية دولية.
+          </p>
+          <div class="product-gallery">
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="0"
+              data-image="images/mensuit.jpg"
+              data-images="images/mensuit.jpg,images/menSwim2.jpg"
+            >
+              <div class="product-card__media">
+                <img src="images/mensuit.jpg" alt="ملابس سباحة رجالية" />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product1Title">ملابس سباحة رجالية</h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
                     </p>
-                    <a href="#products" class="app-section__button" data-key="appSectionButton">حمل التطبيق الآن</a>
+                  </div>
                 </div>
-                <div class="app-section__images">
-                    <div class="app-section__image-main">
-                        <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0"
-                            alt="أشخاص واقفين يرتدون ملابس سباحة" />
-                    </div>
-                    <div class="app-section__image-secondary">
-                        <img src="images/mobile_swimming.jpg" alt="موبايل يعرض تطبيق متجر ملابس سباحة" />
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ========================= -->
-        <!-- WHY CHOOSE US SECTION -->
-        <!-- ========================= -->
-        <section id="why-choose-us" class="why-choose-us">
-            <div class="why-choose-us__container">
-                <div class="why-choose-us__images">
-                    <div class="why-choose-us__image-top">
-                        <img src="images/swimGlass.jpg" alt="نظارات سباحة احترافية" />
-                    </div>
-                    <div class="why-choose-us__image-bottom">
-                        <img src="images/menSwim2.jpg" alt="بدلات سباحة عالية الجودة" />
-                    </div>
-                </div>
-                <div class="why-choose-us__content">
-                    <h2 class="why-choose-us__title" data-key="whyChooseUsTitle">لماذا تختارنا</h2>
-                    <p class="why-choose-us__description" data-key="whyChooseUsDescription">
-                        نقدم لك جودة لا مثيل لها وقيمة عالية وثقة في كل ما يخص معدات السباحة الاحترافية.
-                        نحن ملتزمون بتوفير أفضل المنتجات والخدمات لمساعدتك في تحقيق أهدافك الرياضية.
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product1Title">ملابس سباحة رجالية</h3>
+                <p data-key="product1Desc">
+                  تشكيلة أنيقة وعملية من ملابس السباحة للرجال، لجميع الأنشطة
+                  المائية.
+                </p>
+                <span class="price" data-key="product1Price"
+                  >ابتداءً من 950 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="1"
+              data-image="images/suit.jpg"
+              data-images="images/suit.jpg,images/suit2.jpg"
+            >
+              <div class="product-card__media">
+                <img src="images/suit.jpg" alt="ملابس سباحة نسائية" />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product2Title">ملابس سباحة نسائية</h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
                     </p>
-                    <div class="why-choose-us__features">
-                        <div class="why-choose-us__feature-box">
-                            <h3 class="why-choose-us__feature-title" data-key="whyChooseUsFeature1Title">شحن سريع</h3>
-                            <p class="why-choose-us__feature-desc" data-key="whyChooseUsFeature1Desc">للطلبات فوق 1000
-                                ج.م</p>
-                        </div>
-                        <div class="why-choose-us__feature-box">
-                            <h3 class="why-choose-us__feature-title" data-key="whyChooseUsFeature2Title">ضمان الجودة
-                            </h3>
-                            <p class="why-choose-us__feature-desc" data-key="whyChooseUsFeature2Desc">100% مضمون</p>
-                        </div>
-                        <div class="why-choose-us__feature-box">
-                            <h3 class="why-choose-us__feature-title" data-key="whyChooseUsFeature3Title">دفع آمن</h3>
-                            <p class="why-choose-us__feature-desc" data-key="whyChooseUsFeature3Desc">معاملات محمية
-                                بالكامل</p>
-                        </div>
-                        <div class="why-choose-us__feature-box">
-                            <h3 class="why-choose-us__feature-title" data-key="whyChooseUsFeature4Title">دعم 24/7</h3>
-                            <p class="why-choose-us__feature-desc" data-key="whyChooseUsFeature4Desc">جاهزون من أجلك</p>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
-        </section>
-        <!-- ========================= -->
-        <!-- PRODUCTS SECTION -->
-        <!-- ========================= -->
-        <section id="products">
-            <div class="section__inner">
-                <h2 class="section__title" data-key="productsTitle">منتجاتنا المميزة</h2>
-                <p class="section__subtitle" data-key="productsSubtitle">
-                    مجموعة مختارة بعناية تلبي احتياجات جميع مستويات السباحة من المبتدئين
-                    وحتى المحترفين، مع ضمان جودة معتمد من اتحادات رياضية دولية.
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product2Title">ملابس سباحة نسائية</h3>
+                <p data-key="product2Desc">
+                  تصاميم عصرية ومريحة لملابس السباحة النسائية، تجمع بين الأناقة
+                  والوظائفية.
                 </p>
-                <div class="product-gallery">
-                    <article class="product-card" role="button" tabindex="0" data-product-index="0"
-                        data-image="images/mensuit.jpg" data-images="images/mensuit.jpg,images/menSwim2.jpg">
-                        <div class="product-card__media">
-                            <img src="images/mensuit.jpg" alt="ملابس سباحة رجالية" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product1Title">ملابس سباحة رجالية</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product1Title">ملابس سباحة رجالية</h3>
-                            <p data-key="product1Desc">
-                                تشكيلة أنيقة وعملية من ملابس السباحة للرجال، لجميع الأنشطة المائية.
-                            </p>
-                            <span class="price" data-key="product1Price">ابتداءً من 950 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="1"
-                        data-image="images/suit.jpg" data-images="images/suit.jpg,images/suit2.jpg">
-                        <div class="product-card__media">
-                            <img src="images/suit.jpg" alt="ملابس سباحة نسائية" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product2Title">ملابس سباحة نسائية</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product2Title">ملابس سباحة نسائية</h3>
-                            <p data-key="product2Desc">
-                                تصاميم عصرية ومريحة لملابس السباحة النسائية، تجمع بين الأناقة والوظائفية.
-                            </p>
-                            <span class="price" data-key="product2Price">ابتداءً من 1,650 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="2"
-                        data-image="images/children.jpg" data-images="images/children.jpg,images/swimMan2.jpg,images/swimMan3.jpg">
-                        <div class="product-card__media">
-                            <img src="images/children.jpg" alt="اكسسوارات السباحة للأطفال" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product3Title">اكسسوارات السباحة للأطفال</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product3Title">اكسسوارات السباحة للأطفال</h3>
-                            <p data-key="product3Desc">
-                                كل ما يحتاجه الأطفال للمرح والأمان في الماء، من عوامات ونظارات وألعاب مائية.
-                            </p>
-                            <span class="price" data-key="product3Price">ابتداءً من 420 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="3"
-                        data-image="images/shoes.jpg" data-images="images/shoes.jpg">
-                        <div class="product-card__media">
-                            <img src="images/shoes.jpg" alt="أحذية الشاطئ والماء" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product4Title">أحذية الشاطئ والماء</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product4Title">أحذية الشاطئ والماء</h3>
-                            <p data-key="product4Desc">
-                                أحذية مريحة وعملية للحماية حول المسبح وعلى الشاطئ، بتصاميم عصرية.
-                            </p>
-                            <span class="price" data-key="product4Price">ابتداءً من 580 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="4"
-                        data-image="images/suncreams.jpg" data-images="images/suncreams.jpg">
-                        <div class="product-card__media">
-                            <img src="images/suncreams.jpg" alt="واقيات الشمس والمنتجات الواقية" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product5Title">واقيات الشمس والمنتجات الواقية</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product5Title">واقيات الشمس والمنتجات الواقية</h3>
-                            <p data-key="product5Desc">
-                                حماية فعالة للبشرة من أشعة الشمس الضارة أثناء الأنشطة المائية.
-                            </p>
-                            <span class="price" data-key="product5Price">ابتداءً من 320 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="5"
-                        data-image="images/helpsuit.jpg" data-images="images/helpsuit.jpg">
-                        <div class="product-card__media">
-                            <img src="images\helpsuit.jpg" alt="أدوات الإنقاذ والسلامة المائية" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product6Title">أدوات الإنقاذ والسلامة المائية</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product6Title">أدوات الإنقاذ والسلامة المائية</h3>
-                            <p data-key="product6Desc">
-                                معدات ضرورية لضمان السلامة، من سترات نجاة وعوامات إنقاذ.
-                            </p>
-                            <span class="price" data-key="product6Price">ابتداءً من 450 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="6"
-                        data-image="images/roob.jpg" data-images="images/roob.jpg">
-                        <div class="product-card__media">
-                            <img src="images/roob.jpg" alt="مناشف وأرواب الشاطئ" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product7Title">مناشف وأرواب الشاطئ</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product7Title">مناشف وأرواب الشاطئ</h3>
-                            <p data-key="product7Desc">
-                                مناشف ناعمة وفخمة وأرواب أنيقة، مثالية بعد السباحة.
-                            </p>
-                            <span class="price" data-key="product7Price">ابتداءً من 280 ج.م</span>
-                        </div>
-                    </article>
-                    <article class="product-card" role="button" tabindex="0" data-product-index="7"
-                        data-image="images/equipments.jpg" data-images="images/equipments.jpg">
-                        <div class="product-card__media">
-                            <img src="images/equipments.jpg" alt="حقائب ومستلزمات حمل معدات السباحة" />
-                            <div class="product-card__overlay">
-                                <div class="product-card__overlay-content">
-                                    <h3 data-key="product8Title">حقائب ومستلزمات حمل معدات السباحة</h3>
-                                    <p class="product-card__cta" data-key="productCta">انقر للتعرف على المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card__details" aria-hidden="true">
-                            <h3 data-key="product8Title">حقائب ومستلزمات حمل معدات السباحة</h3>
-                            <p data-key="product8Desc">
-                                حقائب عملية ومقاومة للماء لحمل جميع مستلزمات السباحة والشاطئ.
-                            </p>
-                            <span class="price" data-key="product8Price">ابتداءً من 380 ج.م</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================= -->
-        <!-- SERVICES SECTION -->
-        <!-- ========================= -->
-        <section id="services">
-            <div class="section__inner">
-                <h2 class="section__title" data-key="servicesTitle">خدماتنا</h2>
-                <p class="section__subtitle" data-key="servicesSubtitle">
-                    أكثر من مجرد متجر إلكتروني، نقدم حلولاً شاملة تضمن لك تجربة سباحة
-                    مثالية على مدار العام.
-                </p>
-                <div class="features">
-                    <article class="feature-card">
-                        <h3 data-key="service1Title">استشارات تجهيز المسابح</h3>
-                        <p data-key="service1Desc">
-                            فريق هندسي متخصص يضع لك خطة تصميم وتشغيل شاملة مع اختيار المعدات
-                            المناسبة للمساحة والميزانية.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="service2Title">إدارة مخزون الفرق</h3>
-                        <p data-key="service2Desc">
-                            حلول رقمية لمتابعة استخدام الأدوات، جدولة الصيانة، وإعادة الطلب
-                            بشكل تلقائي قبل نفاد المخزون.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="service3Title">برامج تدريب رقمية</h3>
-                        <p data-key="service3Desc">
-                            تطبيقات مخصصة لمتابعة أداء السباحين مع تقارير تفصيلية للمدربين
-                            وتحليلات متقدمة للسباقات.
-                        </p>
-                    </article>
-                    <article class="feature-card">
-                        <h3 data-key="service4Title">ورش عمل للأندية</h3>
-                        <p data-key="service4Desc">
-                            جلسات تدريبية دورية حول الأمن والسلامة، تخطيط المواسم، وأفضل
-                            ممارسات استخدام الأجهزة الذكية.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================= -->
-        <!-- TESTIMONIAL SECTION -->
-        <!-- ========================= -->
-        <section>
-            <div class="section__inner">
-                <div class="testimonial">
-                    <p data-key="testimonialQuote">
-                        "مع Blue Wave أصبح بإمكاننا تجهيز فريق السباحة بالكامل دون عناء.
-                        المنصة سهلة، والتوصيل في الموعد، والأهم أن أدواتهم أحدث ما رأينا في
-                        السوق."
+                <span class="price" data-key="product2Price"
+                  >ابتداءً من 1,650 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="2"
+              data-image="images/children.jpg"
+              data-images="images/children.jpg,images/swimMan2.jpg,images/swimMan3.jpg"
+            >
+              <div class="product-card__media">
+                <img
+                  src="images/children.jpg"
+                  alt="اكسسوارات السباحة للأطفال"
+                />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product3Title">اكسسوارات السباحة للأطفال</h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
                     </p>
-                    <div class="testimonial__author" data-key="testimonialAuthor">مدير نادي النخبة للسباحة – القاهرة
-                    </div>
+                  </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- ========================= -->
-        <!-- CONTACT SECTION -->
-        <!-- ========================= -->
-        <section id="contact" class="contact">
-            <div class="section__inner">
-                <h2 class="section__title" data-key="contactTitle">تواصل معنا</h2>
-                <p class="section__subtitle" data-key="contactSubtitle">
-                    لنتحدث عن متطلباتك ونساعدك في اختيار الحلول المناسبة لتطوير تجربة
-                    السباحة داخل ناديك أو مشروعك.
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product3Title">اكسسوارات السباحة للأطفال</h3>
+                <p data-key="product3Desc">
+                  كل ما يحتاجه الأطفال للمرح والأمان في الماء، من عوامات ونظارات
+                  وألعاب مائية.
                 </p>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <h3 data-key="contactCard1Title">العنوان</h3>
-                        <p data-key="contactCard1Line1">123 شارع النيل، القاهرة، مصر</p>
-                        <p data-key="contactCard1Line2">الفرع الرئيسي - القاهرة</p>
-                        <a class="btn-outline" href="#" data-key="contactCard1Cta">عرض الموقع</a>
-                    </div>
-
-                    <div class="contact-card">
-                        <h3 data-key="contactCard2Title">البريد الإلكتروني</h3>
-                        <p data-key="contactCard2Line1">support@bluewave.com</p>
-                        <p data-key="contactCard2Line2">نرد خلال 12 ساعة عمل.</p>
-                        <a class="btn-outline" href="mailto:support@bluewave.com" data-key="contactCard2Cta">راسلنا</a>
-                    </div>
-
-                    <div class="contact-card">
-                        <h3 data-key="contactCard3Title">الدعم الفني</h3>
-                        <p data-key="contactCard3Line1">+971 55 550 1925</p>
-                        <p data-key="contactCard3Line2">ساعات العمل: الأحد – الخميس 9 ص الى 6 م</p>
-                        <a class="btn-outline" href="tel:+971555501925" data-key="contactCard3Cta">اتصل بنا</a>
-                    </div>
-
-                    <div class="contact-card">
-                        <h3 data-key="contactCard4Title">مواقع التوزيع</h3>
-                        <p data-key="contactCard4Line1">مراكز في دبي والرياض</p>
-                        <p data-key="contactCard4Line2">الشحن الدولي متاح</p>
-                        <a class="btn-outline" href="#" data-key="contactCard4Cta">عرض التفاصيل</a>
-                    </div>
+                <span class="price" data-key="product3Price"
+                  >ابتداءً من 420 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="3"
+              data-image="images/shoes.jpg"
+              data-images="images/shoes.jpg"
+            >
+              <div class="product-card__media">
+                <img src="images/shoes.jpg" alt="أحذية الشاطئ والماء" />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product4Title">أحذية الشاطئ والماء</h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product4Title">أحذية الشاطئ والماء</h3>
+                <p data-key="product4Desc">
+                  أحذية مريحة وعملية للحماية حول المسبح وعلى الشاطئ، بتصاميم
+                  عصرية.
+                </p>
+                <span class="price" data-key="product4Price"
+                  >ابتداءً من 580 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="4"
+              data-image="images/suncreams.jpg"
+              data-images="images/suncreams.jpg"
+            >
+              <div class="product-card__media">
+                <img
+                  src="images/suncreams.jpg"
+                  alt="واقيات الشمس والمنتجات الواقية"
+                />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product5Title">
+                      واقيات الشمس والمنتجات الواقية
+                    </h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product5Title">واقيات الشمس والمنتجات الواقية</h3>
+                <p data-key="product5Desc">
+                  حماية فعالة للبشرة من أشعة الشمس الضارة أثناء الأنشطة المائية.
+                </p>
+                <span class="price" data-key="product5Price"
+                  >ابتداءً من 320 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="5"
+              data-image="images/helpsuit.jpg"
+              data-images="images/helpsuit.jpg"
+            >
+              <div class="product-card__media">
+                <img
+                  src="images\helpsuit.jpg"
+                  alt="أدوات الإنقاذ والسلامة المائية"
+                />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product6Title">
+                      أدوات الإنقاذ والسلامة المائية
+                    </h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product6Title">أدوات الإنقاذ والسلامة المائية</h3>
+                <p data-key="product6Desc">
+                  معدات ضرورية لضمان السلامة، من سترات نجاة وعوامات إنقاذ.
+                </p>
+                <span class="price" data-key="product6Price"
+                  >ابتداءً من 450 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="6"
+              data-image="images/roob.jpg"
+              data-images="images/roob.jpg"
+            >
+              <div class="product-card__media">
+                <img src="images/roob.jpg" alt="مناشف وأرواب الشاطئ" />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product7Title">مناشف وأرواب الشاطئ</h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product7Title">مناشف وأرواب الشاطئ</h3>
+                <p data-key="product7Desc">
+                  مناشف ناعمة وفخمة وأرواب أنيقة، مثالية بعد السباحة.
+                </p>
+                <span class="price" data-key="product7Price"
+                  >ابتداءً من 280 ج.م</span
+                >
+              </div>
+            </article>
+            <article
+              class="product-card"
+              role="button"
+              tabindex="0"
+              data-product-index="7"
+              data-image="images/equipments.jpg"
+              data-images="images/equipments.jpg"
+            >
+              <div class="product-card__media">
+                <img
+                  src="images/equipments.jpg"
+                  alt="حقائب ومستلزمات حمل معدات السباحة"
+                />
+                <div class="product-card__overlay">
+                  <div class="product-card__overlay-content">
+                    <h3 data-key="product8Title">
+                      حقائب ومستلزمات حمل معدات السباحة
+                    </h3>
+                    <p class="product-card__cta" data-key="productCta">
+                      انقر للتعرف على المزيد
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card__details" aria-hidden="true">
+                <h3 data-key="product8Title">
+                  حقائب ومستلزمات حمل معدات السباحة
+                </h3>
+                <p data-key="product8Desc">
+                  حقائب عملية ومقاومة للماء لحمل جميع مستلزمات السباحة والشاطئ.
+                </p>
+                <span class="price" data-key="product8Price"
+                  >ابتداءً من 380 ج.م</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= -->
+      <!-- SERVICES SECTION -->
+      <!-- ========================= -->
+      <section id="services">
+        <div class="section__inner">
+          <h2 class="section__title" data-key="servicesTitle">خدماتنا</h2>
+          <p class="section__subtitle" data-key="servicesSubtitle">
+            أكثر من مجرد متجر إلكتروني، نقدم حلولاً شاملة تضمن لك تجربة سباحة
+            مثالية على مدار العام.
+          </p>
+          <div class="features">
+            <article class="feature-card">
+              <h3 data-key="service1Title">استشارات تجهيز المسابح</h3>
+              <p data-key="service1Desc">
+                فريق هندسي متخصص يضع لك خطة تصميم وتشغيل شاملة مع اختيار المعدات
+                المناسبة للمساحة والميزانية.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="service2Title">إدارة مخزون الفرق</h3>
+              <p data-key="service2Desc">
+                حلول رقمية لمتابعة استخدام الأدوات، جدولة الصيانة، وإعادة الطلب
+                بشكل تلقائي قبل نفاد المخزون.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="service3Title">برامج تدريب رقمية</h3>
+              <p data-key="service3Desc">
+                تطبيقات مخصصة لمتابعة أداء السباحين مع تقارير تفصيلية للمدربين
+                وتحليلات متقدمة للسباقات.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3 data-key="service4Title">ورش عمل للأندية</h3>
+              <p data-key="service4Desc">
+                جلسات تدريبية دورية حول الأمن والسلامة، تخطيط المواسم، وأفضل
+                ممارسات استخدام الأجهزة الذكية.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= -->
+      <!-- TESTIMONIAL SECTION -->
+      <!-- ========================= -->
+      <section>
+        <div class="section__inner">
+          <div class="testimonial">
+            <p data-key="testimonialQuote">
+              "مع Blue Wave أصبح بإمكاننا تجهيز فريق السباحة بالكامل دون عناء.
+              المنصة سهلة، والتوصيل في الموعد، والأهم أن أدواتهم أحدث ما رأينا
+              في السوق."
+            </p>
+            <div class="testimonial__author" data-key="testimonialAuthor">
+              مدير نادي النخبة للسباحة – القاهرة
             </div>
-            <footer class="footer" data-key="footerText">
-                © 2025 Blue Wave Sports Tech. جميع الحقوق محفوظة.
-            </footer>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= -->
+      <!-- CONTACT SECTION -->
+      <!-- ========================= -->
+      <section id="contact" class="contact">
+        <div class="section__inner">
+          <h2 class="section__title" data-key="contactTitle">تواصل معنا</h2>
+          <p class="section__subtitle" data-key="contactSubtitle">
+            لنتحدث عن متطلباتك ونساعدك في اختيار الحلول المناسبة لتطوير تجربة
+            السباحة داخل ناديك أو مشروعك.
+          </p>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3 data-key="contactCard1Title">العنوان</h3>
+              <p data-key="contactCard1Line1">123 شارع النيل، القاهرة، مصر</p>
+              <p data-key="contactCard1Line2">الفرع الرئيسي - القاهرة</p>
+              <a class="btn-outline" href="#" data-key="contactCard1Cta"
+                >عرض الموقع</a
+              >
+            </div>
+
+            <div class="contact-card">
+              <h3 data-key="contactCard2Title">البريد الإلكتروني</h3>
+              <p data-key="contactCard2Line1">support@bluewave.com</p>
+              <p data-key="contactCard2Line2">نرد خلال 12 ساعة عمل.</p>
+              <a
+                class="btn-outline"
+                href="mailto:support@bluewave.com"
+                data-key="contactCard2Cta"
+                >راسلنا</a
+              >
+            </div>
+
+            <div class="contact-card">
+              <h3 data-key="contactCard3Title">الدعم الفني</h3>
+              <p data-key="contactCard3Line1">+971 55 550 1925</p>
+              <p data-key="contactCard3Line2">
+                ساعات العمل: الأحد – الخميس 9 ص الى 6 م
+              </p>
+              <a
+                class="btn-outline"
+                href="tel:+971555501925"
+                data-key="contactCard3Cta"
+                >اتصل بنا</a
+              >
+            </div>
+
+            <div class="contact-card">
+              <h3 data-key="contactCard4Title">مواقع التوزيع</h3>
+              <p data-key="contactCard4Line1">مراكز في دبي والرياض</p>
+              <p data-key="contactCard4Line2">الشحن الدولي متاح</p>
+              <a class="btn-outline" href="#" data-key="contactCard4Cta"
+                >عرض التفاصيل</a
+              >
+            </div>
+          </div>
+        </div>
+        <footer class="footer" data-key="footerText">
+          © 2025 Blue Wave Sports Tech. جميع الحقوق محفوظة.
+        </footer>
+      </section>
     </main>
 
     <div class="product-lightbox" id="product-lightbox" aria-hidden="true">
-        <div class="product-lightbox__backdrop" data-lightbox-close></div>
-        <div class="product-lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
-            <button class="product-lightbox__close" type="button" aria-label="إغلاق"
-                data-lightbox-close>&times;</button>
-            <button class="product-lightbox__nav product-lightbox__nav--prev" type="button" aria-label="المنتج السابق"
-                data-lightbox-prev>❮</button>
-            <div class="product-lightbox__content">
-                <img class="product-lightbox__image" src="" alt="" />
-                <div class="product-lightbox__counter" aria-hidden="true"></div>
-                <div class="product-lightbox__caption">
-                    <h3 id="lightbox-title"></h3>
-                    <p class="product-lightbox__description"></p>
-                    <span class="product-lightbox__price"></span>
-                </div>
-            </div>
-            <button class="product-lightbox__nav product-lightbox__nav--next" type="button" aria-label="المنتج التالي"
-                data-lightbox-next>❯</button>
+      <div class="product-lightbox__backdrop" data-lightbox-close></div>
+      <div
+        class="product-lightbox__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightbox-title"
+      >
+        <button
+          class="product-lightbox__close"
+          type="button"
+          aria-label="إغلاق"
+          data-lightbox-close
+        >
+          &times;
+        </button>
+        <button
+          class="product-lightbox__nav product-lightbox__nav--prev"
+          type="button"
+          aria-label="المنتج السابق"
+          data-lightbox-prev
+        >
+          ❮
+        </button>
+        <div class="product-lightbox__content">
+          <img class="product-lightbox__image" src="" alt="" />
+          <div class="product-lightbox__counter" aria-hidden="true"></div>
+          <div class="product-lightbox__caption">
+            <h3 id="lightbox-title"></h3>
+            <p class="product-lightbox__description"></p>
+            <span class="product-lightbox__price"></span>
+          </div>
         </div>
+        <button
+          class="product-lightbox__nav product-lightbox__nav--next"
+          type="button"
+          aria-label="المنتج التالي"
+          data-lightbox-next
+        >
+          ❯
+        </button>
+      </div>
     </div>
 
     <script src="js/main.js" defer></script>
     <!-- Floating action buttons: WhatsApp (left) and Call (right) -->
     <!-- Removed WhatsApp floating image/button below contact section as requested -->
     <!-- تم حذف زر الهاتف العائم بناءً على طلبك -->
-</body>
-
+  </body>
 </html>

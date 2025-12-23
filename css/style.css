@@ -47,14 +47,9 @@ body {
   overflow: hidden;
 }
 
-/*
-* التعديل المطلوب:
-* تم تغيير position من fixed إلى absolute. هذا يجعل خلفية الشرائح
-* تتبع محتوى القسم العلوي (layout) وتختفي عند التمرير لأسفل الصفحة.
-*/
+
 .background-slideshow {
   position: absolute;
-  /* تم التغيير من fixed إلى absolute */
   top: 0;
   left: 0;
   width: 100%;
@@ -120,10 +115,12 @@ header {
   height: var(--header-height);
   display: flex;
   align-items: center;
+  overflow: visible;
 }
 
 /* Push page content below the fixed header so the header's logo doesn't overlap the hero */
-.layout, main {
+.layout,
+main {
   padding-top: calc(var(--header-height) + 12px);
 }
 
@@ -150,19 +147,19 @@ header.hidden {
 .nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* Use full header height and a horizontal safe padding so center content won't be overlapped
-     by absolute-positioned controls (language switcher, right badge). */
+  justify-content: space-between;
+  width: 100%;
   height: 100%;
   padding: 0 var(--header-side-gap);
   color: #fff;
-  transition:
-    /* keep transitions for non-layout properties */
-    box-shadow 0.3s ease;
+  transition: 0.3s all ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  background-color: #0096c7;
 }
+
+/* Desktop: Logo (right) | Menu (center) | Language (left) */
+/* Mobile/Tablet: Menu toggle (left) | Logo (right) */
 
 /* ========================= */
 /* NAVIGATION BAR SCROLLED */
@@ -175,11 +172,8 @@ header.hidden {
 /* LANGUAGE SWITCHER */
 /* ========================= */
 .language-switcher {
-  position: absolute;
-  /* keep language switcher 16px from the left edge */
-  left: -400px;
-  top: 50%;
-  transform: translateY(-50%);
+  /* keep language switcher on the far left (desktop only) */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -206,46 +200,35 @@ header.hidden {
 /* HEADER RIGHT BADGE IMAGE */
 /* ========================= */
 .header-right-img {
-  position: absolute;
-  right: -400px;
-  top: 50%;
-  transform: translateY(-50%);
   width: 50px;
   height: 50px;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(3, 19, 54, 0.25);
-  background: #fff;
+  /* Prevent logo from exceeding header height */
+  max-height: var(--header-height);
+}
+
+/* Logo container - always on the right (RTL) */
+.nav__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  /* Logo always stays on the right side */
+  margin-left: 10px;
 }
 
 /* ========================= */
-/* RESPONSIVE STYLES */
+/* RESPONSIVE STYLES FOR NAVBAR */
 /* ========================= */
-@media (max-width: 768px) {
-  .header-right-img {
-    width: 44px;
-    height: 44px;
-    right: 8px;
-  }
 
-  .language-switcher {
-    left: 65px;
-    gap: 4px;
-    padding: 6px 8px;
-  }
-
-  .language-text {
-    display: none;
-  }
-}
-
-/* ===== Mobile hamburger and mobile menu styles ===== */
+/* ===== Mobile Hamburger Toggle Button ===== */
 .nav-toggle {
-  display: none; /* shown on small screens only */
-  position: absolute;
-  left: 16px; /* in RTL this places it visually on left — we'll adjust with dir if needed */
-  top: 50%;
-  transform: translateY(-50%);
+  display: none;
+  position: relative;
   width: 44px;
   height: 40px;
   padding: 6px;
@@ -253,8 +236,17 @@ header.hidden {
   background: transparent;
   cursor: pointer;
   z-index: 30;
+  flex-shrink: 0;
+  order: 0;
+  /* Menu toggle on the left (RTL) with margin */
+  margin-right: 10px;
 }
-.nav-toggle:focus { outline: 2px solid rgba(0,119,182,0.18); border-radius: 6px; }
+
+.nav-toggle:focus {
+  outline: 2px solid rgba(0, 119, 182, 0.18);
+  border-radius: 6px;
+}
+
 .nav-toggle__bar {
   display: block;
   height: 3px;
@@ -264,175 +256,326 @@ header.hidden {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Hide nav menu on small screens, show toggle */
-@media (max-width: 768px) {
-  .nav-toggle { display: block; }
-  /* Start hidden and off-canvas */
-  .nav__menu {
-    display: none;
-  }
-
-  /* When nav has mobile-open class, show a stacked menu */
-  .nav.mobile-open .nav__menu {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, rgba(4,21,48,0.98), rgba(4,21,48,0.98));
-    flex-direction: column;
-    gap: 0;
-    padding: 12px 14px 20px;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 25;
-  }
-
-  .nav.mobile-open .nav__menu li {
-    width: 100%;
-    text-align: center;
-    margin: 6px 0;
-  }
-
-  .nav.mobile-open .nav__menu a {
-    display: block;
-    width: 100%;
-    padding: 12px 10px;
-    border-radius: 8px;
-    color: #fff;
-    background: transparent;
-  }
-
-  /* animate bars into an X when open */
-  .nav.mobile-open .nav-toggle__bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .nav.mobile-open .nav-toggle__bar:nth-child(2) { opacity: 0; }
-  .nav.mobile-open .nav-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-}
-
-/* Ensure nav links are fully hidden on small screens so they don't appear above/below the header */
-@media (max-width: 980px) {
-  .nav__menu { display: none !important; }
-}
-
-@media (max-width: 768px) {
-  .nav__menu { display: none !important; }
-}
-
-/* ===== Very small screens: hide header controls and show logo only ===== */
-@media (max-width: 420px) {
-  /* hide nav links, language switcher and hamburger entirely */
-  .nav__menu { display: none !important; }
-  .language-switcher { display: none !important; }
-  .nav-toggle { display: none !important; }
-
-  /* keep the header height and keep logo visible in its place */
-  header { height: var(--header-height); }
-  .header-right-img {
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    width: 44px;
-    height: 44px;
-    z-index: 40;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    background: #fff;
-  }
-
-  /* ensure nav container doesn't reserve extra space for hidden controls */
-  .nav { padding: 0 12px; }
-}
-
-/* support LTR placement: when dir is ltr put toggle on right */
-html[dir="ltr"] .nav-toggle { left: auto; right: 16px; }
-
-/* Center the logo on small screens and ensure hamburger controls remain accessible */
-@media (max-width: 768px) {
-  /* center the logo inside the header bar */
-  .nav { position: relative; }
-  .header-right-img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    z-index: 50;
-    box-shadow: 0 10px 24px rgba(3, 19, 54, 0.28);
-    background: #fff;
-  }
-
-  /* Hide language text and move icon to opposite side so hamburger remains primary control */
-  .language-switcher {
-    left: 12px;
-    right: auto;
-    gap: 8px;
-    padding: 6px 10px;
-    background: #fff;
-    color: #0b1d37;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    align-items: center;
-    display: inline-flex;
-    z-index: 40;
-  }
-
-  /* show the language text inside the pill on mobile like the reference */
-  .language-switcher .language-text { display: inline-block; margin-inline-start: 6px; font-weight:700; }
-
-  .language-switcher .language-icon { font-size: 1.1rem; }
-
-  /* Place hamburger on the right side for RTL small screens (matches reference) */
-  .nav-toggle { right: 16px; left: auto; }
-
-  /* ensure hamburger remains above the language pill and centered logo */
-  .nav-toggle { z-index: 45; }
-
-  /* hide the inline nav links in the header; they'll appear in the mobile menu when opened */
-  .nav__menu { display: none; }
-
-  /* when the menu is opened, show it as a stacked list below the header (not overlapping logo) */
-  .nav.mobile-open .nav__menu {
-    display: flex;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 8px;
-    right: 8px;
-    background: rgba(4,21,48,0.98);
-    flex-direction: column;
-    gap: 6px;
-    padding: 10px;
-    border-radius: 10px;
-    z-index: 40;
-  }
-
-  /* Keep nav centered but visually hide menu until toggled open */
-  .nav {
-    padding: 0 16px; /* smaller safe padding on mobile */
-    justify-content: center;
-  }
-
-  /* Ensure stacked menu appears below header and does not overlap centered logo */
-  .nav.mobile-open .nav__menu {
-    top: calc(100% + 8px);
-    padding-top: 12px;
-  }
-}
-
-/* ========================= */
-/* NAVIGATION MENU */
-/* ========================= */
+/* ===== Mobile Menu Styles ===== */
 .nav__menu {
   display: flex;
   gap: 24px;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   font-weight: 500;
   justify-content: center;
   align-items: center;
+  flex: 1;
+  order: 2;
+  /* Menu always in the center on desktop */
 }
 
+.nav__menu li {
+  list-style: none;
+
+}
+
+/* Mobile menu when open */
+.nav.mobile-open .nav__menu {
+  display: flex !important;
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  left: 0;
+  background: rgba(4, 21, 48, 0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  padding: 40px 24px;
+  gap: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1200;
+  animation: slideDown 0.3s ease-out;
+  transform: none !important;
+  flex: none !important;
+  justify-content: flex-start;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav.mobile-open .nav__menu a {
+  font-size: 1.2rem;
+  padding: 12px 0;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Language switcher in mobile menu */
+.nav__menu-lang-item {
+  display: none;
+}
+
+.nav.mobile-open .nav__menu-lang-item {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.language-switcher--mobile {
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  background: transparent;
+  border-radius: 8px;
+}
+
+.language-switcher--mobile:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Desktop: 981px and above ===== */
+@media (min-width: 981px) {
+  .nav {
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: none !important;
+  }
+
+  .nav__menu {
+    display: flex !important;
+    flex: 1;
+    justify-content: center;
+    order: 2;
+  }
+
+  .language-switcher {
+    display: flex !important;
+    order: 1;
+    flex-shrink: 0;
+    margin-right: auto;
+  }
+
+  .nav__logo {
+    order: 3;
+    flex-shrink: 0;
+    margin-left: 10px;
+    margin-right: 0;
+  }
+}
+
+/* ===== Tablet: 769px to 980px ===== */
+@media (max-width: 980px) and (min-width: 769px) {
+  .nav {
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+
+  .nav__menu {
+    display: none !important;
+    position: static;
+    transform: none;
+  }
+
+  /* Show menu when mobile-open class is present */
+  .nav.mobile-open .nav__menu {
+    display: flex !important;
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    background: rgba(4, 21, 48, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1200;
+    animation: slideDown 0.3s ease-out;
+    transform: none !important;
+    flex: none !important;
+    justify-content: flex-start;
+  }
+
+  .language-switcher {
+    display: none !important;
+  }
+
+  .nav-toggle {
+    display: block !important;
+    order: 0;
+    margin-right: 10px;
+  }
+
+  .nav__logo {
+    order: 3;
+    margin-left: 10px;
+    margin-right: 0;
+    flex-grow: 0;
+  }
+}
+
+/* ===== Mobile: 768px and below ===== */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: block !important;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    order: 0;
+    margin-right: 10px;
+    margin-left: 0;
+  }
+
+  .nav__menu {
+    display: none !important;
+    position: static;
+    transform: none;
+  }
+
+  /* Show menu when mobile-open class is present */
+  .nav.mobile-open .nav__menu {
+    display: flex !important;
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    background: rgba(4, 21, 48, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1200;
+    animation: slideDown 0.3s ease-out;
+    transform: none !important;
+    flex: none !important;
+    justify-content: flex-start;
+  }
+
+  .nav__logo {
+    order: 3;
+    margin-left: 10px;
+    margin-right: 0;
+    flex-grow: 0;
+    height: 100%;
+  }
+
+  .header-right-img {
+    width: 40px;
+    height: 40px;
+    max-height: calc(var(--header-height) - 16px);
+  }
+
+  .language-switcher {
+    display: none !important;
+  }
+}
+
+/* ===== Small Mobile: 420px and below ===== */
+@media (max-width: 420px) {
+  .nav {
+    padding: 0 8px;
+  }
+
+  .nav-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 3px;
+    margin-right: 8px;
+  }
+
+  .nav__logo {
+    margin-left: 8px;
+  }
+
+  .header-right-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav.mobile-open .nav__menu {
+    display: flex !important;
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    background: rgba(4, 21, 48, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 32px 16px;
+    gap: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1200;
+    animation: slideDown 0.3s ease-out;
+    transform: none !important;
+    flex: none !important;
+    justify-content: flex-start;
+  }
+}
+
+/* ===== LTR Support ===== */
+/* In LTR: Language (right) | Menu (center) | Logo (left) */
+@media (min-width: 981px) {
+  html[dir="ltr"] .nav {
+    justify-content: space-between;
+  }
+
+  html[dir="ltr"] .nav__menu {
+    order: 2;
+    flex: 1;
+    justify-content: center;
+  }
+
+  html[dir="ltr"] .language-switcher {
+    order: 1;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  html[dir="ltr"] .nav__logo {
+    order: 3;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+/* LTR Mobile/Tablet */
+@media (max-width: 980px) {
+  html[dir="ltr"] .nav-toggle {
+    order: 0;
+    margin-left: 10px;
+    margin-right: 0;
+  }
+
+  html[dir="ltr"] .nav__logo {
+    order: 3;
+    margin-right: 10px;
+    margin-left: 0;
+  }
+}
+
+/* ========================= */
+/* NAVIGATION MENU LINKS */
+/* ========================= */
 .nav__menu a {
   color: var(--muted);
   text-decoration: none;
@@ -443,6 +586,21 @@ html[dir="ltr"] .nav-toggle { left: auto; right: 16px; }
 .nav__menu a:focus {
   color: #fff;
   transform: translateY(-2px);
+}
+
+/* Desktop order for navbar elements (RTL) */
+/* RTL: Logo (right) | Menu (center) | Language (left) */
+.language-switcher {
+  order: 1;
+  margin-right: auto;
+}
+
+.nav__logo {
+  order: 3;
+}
+
+.nav-toggle {
+  order: 0;
 }
 
 /* ========================= */
@@ -1161,8 +1319,10 @@ img {
   /* reduced width and padding set earlier; add vertical breathing room */
   position: relative;
   width: min(900px, calc(100% - 160px));
-  margin: 80px auto; /* ensure space from top and bottom */
-  max-height: calc(100vh - 160px); /* keep dialog inside viewport with padding */
+  margin: 80px auto;
+  /* ensure space from top and bottom */
+  max-height: calc(100vh - 160px);
+  /* keep dialog inside viewport with padding */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1170,7 +1330,8 @@ img {
   padding: 28px;
   background: #fff;
   box-shadow: 0 12px 40px rgba(3, 19, 54, 0.16);
-  overflow: hidden; /* allow content area to handle internal scrolling */
+  overflow: hidden;
+  /* allow content area to handle internal scrolling */
 }
 
 /* Make content area scroll if caption grows or on very small screens */
@@ -1181,15 +1342,18 @@ img {
   gap: 18px;
   justify-items: center;
   align-items: start;
-  overflow: auto; /* allow scrolling inside the dialog */
-  padding: 6px; /* small inner padding so image doesn't touch dialog edges */
+  overflow: auto;
+  /* allow scrolling inside the dialog */
+  padding: 6px;
+  /* small inner padding so image doesn't touch dialog edges */
 }
 
 /* Constrain image so it fits inside the dialog without touching top/bottom */
 .product-lightbox__image {
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 320px); /* viewport minus dialog margins and paddings */
+  max-height: calc(100vh - 320px);
+  /* viewport minus dialog margins and paddings */
   object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 6px 20px rgba(3, 19, 54, 0.08);
@@ -1350,13 +1514,14 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.25s cubic-bezier(.4,1.3,.5,1), box-shadow 0.25s cubic-bezier(.4,1.3,.5,1);
+  transition: transform 0.25s cubic-bezier(.4, 1.3, .5, 1), box-shadow 0.25s cubic-bezier(.4, 1.3, .5, 1);
   will-change: transform, box-shadow;
 }
+
 /* Hover animation for contact cards */
 .contact-card:hover {
   transform: translateY(-10px) scale(1.035);
-  box-shadow: 0 30px 60px 0 rgba(0, 119, 182, 0.18), 0 2px 8px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 30px 60px 0 rgba(0, 119, 182, 0.18), 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   border-color: var(--primary);
 }
 
@@ -1438,21 +1603,26 @@ img {
 
 /* tighten contact spacing */
 .contact .section__title {
-  margin-bottom: 6px; /* a touch closer to subtitle */
+  margin-bottom: 6px;
+  /* a touch closer to subtitle */
 }
 
 .contact .section__subtitle {
-  margin-bottom: 20px; /* reduce space above cards */
+  margin-bottom: 20px;
+  /* reduce space above cards */
   max-width: 820px;
 }
 
 .contact-grid {
-  gap: 18px; /* tighter gap between cards */
+  gap: 18px;
+  /* tighter gap between cards */
 }
 
 .contact-card {
-  padding: 16px; /* reduce inner padding */
-  min-height: 220px; /* slightly shorter cards */
+  padding: 16px;
+  /* reduce inner padding */
+  min-height: 220px;
+  /* slightly shorter cards */
 }
 
 .contact-card h3 {
@@ -1468,6 +1638,7 @@ img {
   #contact {
     padding: 48px 16px;
   }
+
   .contact-card {
     min-height: 200px;
     padding: 14px;
@@ -1478,9 +1649,11 @@ img {
   #contact {
     padding: 36px 12px;
   }
+
   .contact .section__subtitle {
     margin-bottom: 14px;
   }
+
   .contact-card {
     padding: 12px;
   }
@@ -1496,57 +1669,14 @@ img {
   font-size: 0.95rem;
 }
 
-@media (max-width: 768px) {
-  .background-slideshow .slide {
-    background-size: cover;
-    background-position: center center;
-    background-attachment: scroll;
-  }
-
-  .nav {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .nav__menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    display: flex;
-  }
-
-  .hero {
-    padding-top: 120px;
-  }
-
-  main {
-    margin-top: -30px;
-  }
-
-  .nav.scrolled {
-    flex-direction: row;
-    justify-content: center;
-    padding: 10px 24px;
-  }
-
-  .nav.scrolled .nav__menu a {
-    color: #fff;
-  }
-
-  .section__title,
-  .section__subtitle,
-  .hero__title,
-  .hero__subtitle {
-    text-align: center;
-  }
-}
-
 /* ========================= */
 /* ADDITIONAL RESPONSIVE RULES */
 /* ========================= */
 /* Improve responsiveness across a range of widths (desktop -> tablet -> mobile) */
 @media (max-width: 1200px) {
   .nav {
-    padding: 0 48px; /* reduce safe-side gap on medium screens */
+    padding: 0 48px;
+    /* reduce safe-side gap on medium screens */
   }
 
   .hero {
@@ -1573,75 +1703,7 @@ img {
   }
 }
 
-@media (max-width: 768px) {
-  /* Header: compact and practical for mobile */
-  header {
-    height: 64px;
-  }
-
-  .nav {
-    padding: 0 14px;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  .language-switcher {
-    position: relative;
-    left: 0;
-    transform: none;
-    top: 0;
-    margin-right: 8px;
-    padding: 6px 8px;
-  }
-
-  .header-right-img {
-    position: relative;
-    right: 0;
-    transform: none;
-    margin-left: 8px;
-  }
-
-  .nav__menu {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 6px;
-  }
-
-  .hero {
-    padding: 110px 14px 48px;
-  }
-
-  .hero__title {
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-  }
-
-  .product-card__media {
-    height: 200px;
-  }
-
-  /* Make CTA buttons full-width on small screens for easier tapping */
-  .contact-card .btn-outline,
-  .product-card .product-card__cta a {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Contact grid becomes two columns on phones in landscape/tablet */
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-}
-
 @media (max-width: 560px) {
-  .nav__menu {
-    gap: 10px;
-  }
-
   .product-gallery {
     grid-template-columns: 1fr;
   }
@@ -1670,14 +1732,19 @@ img {
   }
 
   /* Increase touch target for small screens */
-  .btn-primary, .btn-secondary, .contact-card .btn-outline {
+  .btn-primary,
+  .btn-secondary,
+  .contact-card .btn-outline {
     padding: 12px 16px;
     font-size: 0.95rem;
   }
 }
 
 /* Small accessibility improvement: larger focus outlines for keyboard users */
-.btn-primary:focus, .btn-secondary:focus, .contact-card .btn-outline:focus, .nav__menu a:focus {
-  outline: 3px solid rgba(0,119,182,0.18);
+.btn-primary:focus,
+.btn-secondary:focus,
+.contact-card .btn-outline:focus,
+.nav__menu a:focus {
+  outline: 3px solid rgba(0, 119, 182, 0.18);
   outline-offset: 3px;
 }
