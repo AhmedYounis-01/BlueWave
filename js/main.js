@@ -167,6 +167,11 @@ const translations = {
         ar: "لنتحدث عن متطلباتك ونساعدك في اختيار الحلول المناسبة لتطوير تجربة السباحة داخل ناديك أو مشروعك.",
         en: "Let's discuss your requirements and help you choose the right solutions to develop the swimming experience within your club or project."
     },
+    contactName: { ar: "الاسم", en: "Name" },
+    contactEmail: { ar: "البريد الإلكتروني", en: "Email" },
+    contactPhone: { ar: "رقم الهاتف", en: "Phone Number" },
+    contactMessage: { ar: "رسالتك...", en: "Your message..." },
+    contactSubmit: { ar: "إرسال", en: "Send" },
     contactCard1Title: { ar: "العنوان", en: "Address" },
     contactCard1Line1: { ar: "123 شارع النيل\u060C القاهرة\u060C مصر", en: "123 Nile St, Cairo, Egypt" },
     contactCard1Line2: { ar: "الفرع الرئيسي - القاهرة", en: "Head Office - Cairo" },
@@ -188,7 +193,17 @@ const translations = {
     contactCard4Cta: { ar: "عرض التفاصيل", en: "View details" },
 
     // Footer
+    footerTagline: { ar: "منصة رياضية شاملة للسباحة والرياضات المائية", en: "Comprehensive sports platform for swimming and water sports" },
+    footerLinksTitle: { ar: "روابط سريعة", en: "Quick Links" },
+    footerContactTitle: { ar: "تواصل معنا", en: "Contact Us" },
+    footerPhone: { ar: "الهاتف:", en: "Phone:" },
+    footerEmail: { ar: "البريد:", en: "Email:" },
+    footerLocation: { ar: "العنوان:", en: "Address:" },
+    footerCity: { ar: "القاهرة، مصر", en: "Cairo, Egypt" },
     footerText: { ar: "© 2025 Blue Wave Sports Tech. جميع الحقوق محفوظة.", en: "© 2025 Blue Wave Sports Tech. All Rights Reserved." },
+    
+    // Global / Misc
+    orderNow: { ar: "اطلب الآن", en: "Order Now" },
 
     // App Section
     appSectionTitle: { ar: "تطبيق Blue Wave", en: "Blue Wave App" },
@@ -268,6 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Special case: <a> tags (do not translate href)
                 else if (element.tagName === 'A') {
                     element.textContent = translations[key][lang];
+                }
+                // Default: update text content
+                else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = translations[key][lang];
                 }
                 // Default: update text content
                 else {
